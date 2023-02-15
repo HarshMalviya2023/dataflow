@@ -1,0 +1,32 @@
+{
+  "description": "A pipeline that copies data from pubsub to bigquery",
+  "name": "IngestionPipeline_metadata",
+  "parameters": [
+    {
+      "name": "query",
+      "helpText": "Query to get the data from BigQuery e.g. select field1, field2 from projectId.dataset.table",
+      "label": "BigQuery query"
+    },
+    {
+      "name": "deidentifyTemplateName",
+      "helpText": "DLP Deidentify Template to be used for API request (e.g.projects/{project_id}/deidentifyTemplates/{deIdTemplateId}",
+      "label": "DeidentifyTemplateName"
+    },
+    {
+      "name": "inspectTemplateName",
+      "helpText": "DLP Inspect Template to be used for API request (e.g.projects/{project_id}/inspectTemplates/{inspectTemplateId}",
+      "label": "InspectTemplateName",
+      "isOptional" : true
+    },
+    {
+      "name": "outputTableSpec",
+      "helpText": "BigQuery in which we need to insert data in format <PROJECT_ID>:<DATASET>:<TABLE_NAME>",
+      "label": "TableSpec"
+    },
+    {
+      "name": "projectId",
+      "helpText": "Project id to be used", 
+      "label": "Project id"
+    }
+  ]
+}
