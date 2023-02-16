@@ -1,9 +1,4 @@
 steps:
-- name: 'gcr.io/cloud-builders/gsutil'
-  entrypoint: 'bash'
-  args:
-  - '-c'
-  - 'apt-get update && apt-get -y install python && curl https://sdk.cloud.google.com | bash && exec -l $SHELL && gcloud init'
 - name: 'gcr.io/cloud-builders/git'
   args: ['clone', 'https://github.com/harshmalviya2023/dataflow.git']
 - name: 'gcr.io/cloud-builders/mvn'
