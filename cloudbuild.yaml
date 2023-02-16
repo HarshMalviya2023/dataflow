@@ -1,7 +1,20 @@
 steps:
-- name: 'gcr.io/cloud-builders/git'
- args: ['clone', 'https://github.com/HarshMalviya2023/dataflow.git', '.']
-- name: 'gcr.io/cloud-builders/mvn'
- args:  ['clean', 'compile', 'exec:java', '-Dexec.mainClass=com.impetus.dataflow.IngestionPipeline', '-Dexec.args=--runner=DataflowRunner --project=learning-313419 --stagingLocation=gs://dataset2023/temp/staging --templateLocation=gs://dataset2023/IngestionPipeline --region=us-central1']
 - name: 'gcr.io/cloud-builders/gsutil'
- args: ['cp', 'conf/IngestionPipeline_metadata', 'gs://dataset2023/IngestionPipeline_metadata']
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - 'apt-get update && apt-get -y install python && curl https://sdk.cloud.google.com | bash && exec -l $SHELL && gcloud init'
+- name: 'gcr.io/cloud-builders/git'
+  args: ['clone', 'https://github.com/harshmalviya2023/dataflow.git']
+- name: 'gcr.io/cloud-builders/mvn'
+  args: ['clean', 'compile', 'exec:java', '-Dexec.mainClass=com.impetus.dataflow.IngestionPipeline', '-Dexec.args=--runner=DataflowRunner --project=learning-313419 --stagingLocation=gs://dataset2023/temp/staging --templateLocation=gs://dataset2023/IngestionPipeline --region=us-central1']
+- name: 'gcr.io/cloud-builders/gsutil'
+  args: ['cp', 'conf/IngestionPipeline_metadata', 'gs://dataset2023/IngestionPipeline_metadata']
+
+# steps:
+# - name: 'gcr.io/cloud-builders/git'
+#  args: ['clone', 'https://github.com/HarshMalviya2023/dataflow.git', '.']
+# - name: 'gcr.io/cloud-builders/mvn'
+#  args:  ['clean', 'compile', 'exec:java', '-Dexec.mainClass=com.impetus.dataflow.IngestionPipeline', '-Dexec.args=--runner=DataflowRunner --project=learning-313419 --stagingLocation=gs://dataset2023/temp/staging --templateLocation=gs://dataset2023/IngestionPipeline --region=us-central1']
+# - name: 'gcr.io/cloud-builders/gsutil'
+#  args: ['cp', 'conf/IngestionPipeline_metadata', 'gs://dataset2023/IngestionPipeline_metadata']
