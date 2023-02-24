@@ -10,11 +10,11 @@ steps:
     - 'build'
     - '--no-cache' # Force Docker to build a new image every time
     - '-t'
-    - 'gcr.io/learning-313419/my-image:${SHORT_SHA}'
+    - 'gcr.io/learning-313419/dataflow:${SHORT_SHA}'
     - '.'
 # Push the Docker image to the container registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/learning-313419/my-image:${SHORT_SHA}']
+  args: ['push', 'gcr.io/learning-313419/dataflow:${SHORT_SHA}']
 # - name: 'gcr.io/cloud-builders/docker'
 #   args: ['build', '-t', 'gcr.io/learning-313419/dataflow', '.']
 # - name: 'gcr.io/cloud-builders/docker'
