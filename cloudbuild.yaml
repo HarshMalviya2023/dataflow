@@ -5,14 +5,14 @@ steps:
   args: ['clean', 'compile', 'exec:java', '-Dexec.mainClass=com.impetus.dataflow.IngestionPipeline', '-Dexec.args=--runner=DataflowRunner --project=learning-313419 --stagingLocation=gs://dataset2023/temp/staging --templateLocation=gs://dataset2023/IngestionPipeline --region=us-central1']
 - name: 'gcr.io/cloud-builders/gsutil'
   args: ['cp', 'dataflow/conf/IngestionPipeline_metadata', 'gs://dataset2023/IngestionPipeline_metadata']
-- name: 'gcr.io/cloud-builders/mvn'
-  args: ['clean','install']
-  env:
-  - 'MY_JAR_FILE_NAME=myapp.jar'
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/learning-313419/dataflow', '.']
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/learning-313419/dataflow']
+# - name: 'gcr.io/cloud-builders/mvn'
+#   args: ['clean','install']
+#   env:
+#   - 'MY_JAR_FILE_NAME=myapp.jar'
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: ['build', '-t', 'gcr.io/learning-313419/dataflow', '.']
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: ['push', 'gcr.io/learning-313419/dataflow']
 # Push the Docker image to the container registry
 # - name: 'gcr.io/cloud-builders/docker'
 #   args: ['push', 'gcr.io/learning-313419/dataflow:${SHORT_SHA}']
