@@ -327,7 +327,11 @@ public class IngestionPipeline {
 
 				.apply("Transform Tokenized Data Back to BQData", ParDo.of(new TableRowProcessorDoFn()));
 
-
+                 dlpTokenizedData.apply("Write-dlp-data-to-bigQuery", BigQueryIO.writeTableRows()
+				// .to(stgTableRef)
+				.to(options.getOutputTableSpec()).withSchemaFromView(bqSchema)
+				.withCreateDisposition(BigQueryIO.Write.CreateDisposition.CREATE_IF_NEEDED)
+				.withWriteDisposition(BigQueryIO.Write.WriteDisposition.WRITE_TRUNCATE));
 
 		p.run();
 	}
