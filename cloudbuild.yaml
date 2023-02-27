@@ -9,13 +9,14 @@ steps:
   args: ['clean','install']
   env:
   - 'MY_JAR_FILE_NAME=myapp.jar'
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/learning-313419/dataflow', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/learning-313419/dataflow']
 # Push the Docker image to the container registry
 # - name: 'gcr.io/cloud-builders/docker'
 #   args: ['push', 'gcr.io/learning-313419/dataflow:${SHORT_SHA}']
-# - name: 'gcr.io/cloud-builders/docker'
-#   args: ['build', '-t', 'gcr.io/learning-313419/dataflow', '.']
-# - name: 'gcr.io/cloud-builders/docker'
-#   args: ['push', 'gcr.io/learning-313419/dataflow']
+
 # - name: 'gcr.io/cloud-builders/gsutil'
 #   args: ['cp', 'dataflow/conf/IngestionPipeline_metadata', 'gs://dataset2023/IngestionPipeline_metadata']
 # - name: 'gcr.io/cloud-builders/gsutil'
