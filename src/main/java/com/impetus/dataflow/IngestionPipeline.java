@@ -61,6 +61,7 @@ public class IngestionPipeline {
 	public interface PipelineOptions extends DataflowPipelineOptions {
 
 		@Description("Query to get the data from BigQuery " + "e.g. select field1, field2 from projectId.dataset.table")
+		@Default.String("select field1, field2 from projectId.dataset.table")
 		ValueProvider<String> getQuery();
 		void setQuery(ValueProvider<String> value);
 
