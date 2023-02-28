@@ -298,7 +298,7 @@ public class IngestionPipeline {
 
 		// get data from BQ1 as TableRow
 		PCollection<TableRow> bigQueryOutput = p.apply("Get-BigQuery-Data",
-				BigQueryIO.readTableRows().fromQuery(options.getQuery()).withoutValidation().usingStandardSql().withUseCachedResults(false));
+				BigQueryIO.readTableRows().fromQuery(options.getQuery()).withoutValidation().usingStandardSql().withMethod(BigQueryIO.TypedRead.Method.DIRECT_READ));
 
 		PCollectionView<List<List<String>>> fileHeaders = bigQueryOutput
 				.apply("Get-File-Headers", ParDo.of(new DoFn<TableRow, List<String>>() {
